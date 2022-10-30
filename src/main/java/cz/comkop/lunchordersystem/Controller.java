@@ -18,4 +18,8 @@ public class Controller {
     public List<User> getAllUsers() {
         return service.getAllUsers();
     }
+    @GetMapping(path = "orders")
+    public List<LunchOrder> getAllLunchOrders(){
+        return service.getAllLunchOrders();
+    }
 }

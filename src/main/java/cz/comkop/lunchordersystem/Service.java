@@ -8,11 +8,14 @@ import java.util.List;
 @org.springframework.stereotype.Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class Service {
-    private final Repository repository;
+    private final LunchOrderRepository lunchOrderRepository;
     private final UserRepository userRepository;
 
     public List<User> getAllUsers(){
-        return repository.findAll();
+        return userRepository.findAll();
+    }
+    public List<LunchOrder> getAllLunchOrders(){
+        return lunchOrderRepository.findAll();
     }
 
    }
