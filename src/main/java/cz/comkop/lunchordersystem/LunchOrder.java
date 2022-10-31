@@ -3,11 +3,13 @@ package cz.comkop.lunchordersystem;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-
 public class LunchOrder {
     @Id
     private int userId;
