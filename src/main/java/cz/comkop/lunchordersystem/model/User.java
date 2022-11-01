@@ -1,4 +1,4 @@
-package cz.comkop.lunchordersystem;
+package cz.comkop.lunchordersystem.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,16 +10,21 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue
+    @Column(name = "user_id")
     private int id;
-    @NonNull
     private String firstName;
-    @NonNull
     private String secondName;
-    @NonNull
     private String email;
-    @NonNull
     private String password;
+
+    public User(String firstName, String secondName, String email, String password) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.email = email;
+        this.password = password;
+    }
 }

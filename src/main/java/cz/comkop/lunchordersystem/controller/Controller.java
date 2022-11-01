@@ -1,5 +1,7 @@
-package cz.comkop.lunchordersystem;
+package cz.comkop.lunchordersystem.controller;
 
+import cz.comkop.lunchordersystem.model.LunchOrder;
+import cz.comkop.lunchordersystem.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
