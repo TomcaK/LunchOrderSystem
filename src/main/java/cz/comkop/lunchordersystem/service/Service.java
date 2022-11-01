@@ -22,12 +22,12 @@ public class Service {
         this.mapper = mapper;
     }
 
-    public List<UserDto> getLunchOrders() {
-        return userReporitory.findAll().stream().map(mapper::toUserDto).collect(Collectors.toList());
+    public List<LunchOrderDto> getLunchOrders() {
+        return lunchOrderRepository.findAll().stream().map(mapper::toLunchOrderDto).collect(Collectors.toList());
     }
 
-    public List<LunchOrderDto> getUsers() {
-        return lunchOrderRepository.findAll().stream().map(mapper::toLunchOrderDto).collect(Collectors.toList());
+    public List<UserDto> getUsers() {
+        return userReporitory.findAll().stream().map(mapper::toUserDto).collect(Collectors.toList());
     }
 
 }

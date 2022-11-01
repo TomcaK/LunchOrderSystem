@@ -1,6 +1,7 @@
 package cz.comkop.lunchordersystem.controller;
 
-import cz.comkop.lunchordersystem.model.LunchOrder;
+import cz.comkop.lunchordersystem.dto.LunchOrderDto;
+import cz.comkop.lunchordersystem.dto.UserDto;
 import cz.comkop.lunchordersystem.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,12 +23,15 @@ public class Controller {
         this.service = service;
     }
 
-    //    @GetMapping(path = "users")
-//    public List<User> getAllUsers() {
-//        return service.getAllUsers();
-//    }
-    @GetMapping(path = "orders")
-    public List<LunchOrder> getAllLunchOrders() {
-        return service.getAllLunchOrders();
+    @GetMapping(path = "users")
+    public List<UserDto> getAllUsers() {
+        return service.getUsers();
     }
+
+    @GetMapping(path = "orders")
+    public List<LunchOrderDto> getLunchOrders() {
+        return service.getLunchOrders();
+    }
+
+
 }
