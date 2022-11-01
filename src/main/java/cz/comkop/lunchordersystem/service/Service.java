@@ -3,7 +3,7 @@ package cz.comkop.lunchordersystem.service;
 import cz.comkop.lunchordersystem.dto.LunchOrderDto;
 import cz.comkop.lunchordersystem.dto.UserDto;
 import cz.comkop.lunchordersystem.repository.LunchOrderRepository;
-import cz.comkop.lunchordersystem.repository.UserReporitory;
+import cz.comkop.lunchordersystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 @org.springframework.stereotype.Service
 public class Service {
     private final LunchOrderRepository lunchOrderRepository;
-    private final UserReporitory userReporitory;
+    private final UserRepository userRepository;
     private final Mapper mapper;
 
     @Autowired
-    public Service(LunchOrderRepository lunchOrderRepository, UserReporitory userReporitory, Mapper mapper) {
+    public Service(LunchOrderRepository lunchOrderRepository, UserRepository userRepository, Mapper mapper) {
         this.lunchOrderRepository = lunchOrderRepository;
-        this.userReporitory = userReporitory;
+        this.userRepository = userRepository;
         this.mapper = mapper;
     }
 
@@ -27,7 +27,7 @@ public class Service {
     }
 
     public List<UserDto> getUsers() {
-        return userReporitory.findAll().stream().map(mapper::toUserDto).collect(Collectors.toList());
+        return userRepository.findAll().stream().map(mapper::toUserDto).collect(Collectors.toList());
     }
 
 }

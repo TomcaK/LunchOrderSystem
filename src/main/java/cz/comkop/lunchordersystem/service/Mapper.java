@@ -5,8 +5,9 @@ import cz.comkop.lunchordersystem.dto.UserDto;
 import cz.comkop.lunchordersystem.model.LunchOrder;
 import cz.comkop.lunchordersystem.model.User;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class Mapper {
     public LunchOrderDto toLunchOrderDto(LunchOrder lunchOrder) {
         return new LunchOrderDto(lunchOrder.getMonday(),

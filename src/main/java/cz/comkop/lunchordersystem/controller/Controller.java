@@ -12,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/")
-//@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 
 public class Controller {
 
@@ -32,6 +31,5 @@ public class Controller {
     public List<LunchOrderDto> getLunchOrders() {
         return service.getLunchOrders();
     }
-
 
 }
