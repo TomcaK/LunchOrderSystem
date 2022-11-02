@@ -13,21 +13,21 @@ import java.util.stream.Collectors;
 public class UserService {
     private final LunchOrderRepository lunchOrderRepository;
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
+    private final Mapper mapper;
 
     @Autowired
-    public UserService(LunchOrderRepository lunchOrderRepository, UserRepository userRepository, UserMapper userMapper) {
+    public UserService(LunchOrderRepository lunchOrderRepository, UserRepository userRepository, Mapper mapper) {
         this.lunchOrderRepository = lunchOrderRepository;
         this.userRepository = userRepository;
-        this.userMapper = userMapper;
+        this.mapper = mapper;
     }
 
     public List<LunchOrderDto> getLunchOrders() {
-        return lunchOrderRepository.findAll().stream().map(userMapper::toLunchOrderDto).collect(Collectors.toList());
+        return lunchOrderRepository.findAll().stream().map(mapper::toLunchOrderDto).collect(Collectors.toList());
     }
 
     public List<UserDto> getUsers() {
-        return userRepository.findAll().stream().map(userMapper::toUserDto).collect(Collectors.toList());
+        return userRepository.findAll().stream().map(mapper::toUserDto).collect(Collectors.toList());
     }
 
 }
