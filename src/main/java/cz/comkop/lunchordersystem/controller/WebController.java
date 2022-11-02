@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = ("/obedy"))
+@RequestMapping("/obedy")
 public class WebController {
     private final WebService webService;
     @Autowired
@@ -15,11 +15,11 @@ public class WebController {
         this.webService = webService;
     }
 
-    @PostMapping
+    @PostMapping(path = "/login")
     public int login(String email,String password){
         return webService.login(email,password);
     }
-    @PostMapping
+    @PostMapping(path = "/register")
     public int register(String email,String password, String passwordControl){
     return webService.register(email,password,passwordControl);
     }

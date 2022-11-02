@@ -1,10 +1,13 @@
 package cz.comkop.lunchordersystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.bytebuddy.asm.Advice;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @NoArgsConstructor
 @Getter
@@ -13,14 +16,16 @@ import javax.persistence.*;
 @Table(name = "orders")
 public class LunchOrder {
     @Id
+    @GeneratedValue
     private int id;
+    private LocalDate date;
     private int monday;
     private int tuesday;
     private int wednesday;
     private int thursday;
     private int friday;
     @OneToOne
-    @MapsId
+    @JsonIgnore
     @JoinColumn(name = "user_id",nullable = false)
     private User user;
 
@@ -33,5 +38,6 @@ public class LunchOrder {
         this.thursday = thursday;
         this.friday = friday;
         this.user = user;
+        this.date = LocalDate.now();
     }
 }

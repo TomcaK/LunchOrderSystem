@@ -19,8 +19,7 @@ public class User {
     private String secondName;
     private String email;
     private String password;
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne(mappedBy = "user")
     private LunchOrder lunchOrder;
 
     public User(String firstName, String secondName, String email, String password,RoleType role) {
@@ -28,6 +27,6 @@ public class User {
         this.secondName = secondName;
         this.email = email;
         this.password = password;
-        this.role = RoleType.USER;
+        this.role = role;
     }
 }

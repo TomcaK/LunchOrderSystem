@@ -5,11 +5,12 @@ import cz.comkop.lunchordersystem.dto.UserDto;
 import cz.comkop.lunchordersystem.repository.LunchOrderRepository;
 import cz.comkop.lunchordersystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@org.springframework.stereotype.Service
+@Service
 public class UserService {
     private final LunchOrderRepository lunchOrderRepository;
     private final UserRepository userRepository;

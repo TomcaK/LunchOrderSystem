@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = ("obedy/admin/"))
+@RequestMapping(path = ("/obedy/admin"))
 public class AdminController {
     private final UserService userService;
 
@@ -20,12 +20,12 @@ public class AdminController {
         this.userService = userService;
     }
 
-    @GetMapping(path = "allUsers")
+    @GetMapping(path = "/allUsers")
     public List<UserDto> getAllUsers() {
         return userService.getUsers();
     }
 
-    @GetMapping(path = "allOrders")
+    @GetMapping(path = "/allOrders")
     public List<LunchOrderDto> getLunchOrders() {
         return userService.getLunchOrders();
     }

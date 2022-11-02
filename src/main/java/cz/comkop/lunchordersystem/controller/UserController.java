@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = ("obedy/user/"))
+@RequestMapping(path = ("/obedy/user"))
 
 public class UserController {
 
