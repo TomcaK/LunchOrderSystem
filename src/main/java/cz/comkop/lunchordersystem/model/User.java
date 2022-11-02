@@ -14,6 +14,7 @@ public class User {
     @Id
     @GeneratedValue
     private int id;
+    private RoleType role;
     private String firstName;
     private String secondName;
     private String email;
@@ -22,10 +23,11 @@ public class User {
     @PrimaryKeyJoinColumn
     private LunchOrder lunchOrder;
 
-    public User(String firstName, String secondName, String email, String password) {
+    public User(String firstName, String secondName, String email, String password,RoleType role) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.email = email;
         this.password = password;
+        this.role = RoleType.USER;
     }
 }

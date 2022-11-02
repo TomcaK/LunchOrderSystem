@@ -2,7 +2,7 @@ package cz.comkop.lunchordersystem.controller;
 
 import cz.comkop.lunchordersystem.dto.LunchOrderDto;
 import cz.comkop.lunchordersystem.dto.UserDto;
-import cz.comkop.lunchordersystem.service.Service;
+import cz.comkop.lunchordersystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,25 +11,22 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/")
-
-public class Controller {
-
-    private final Service service;
+@RequestMapping(path = ("obedy/admin/"))
+public class AdminController {
+    private final UserService userService;
 
     @Autowired
-    public Controller(Service service) {
-        this.service = service;
+    public AdminController(UserService userService) {
+        this.userService = userService;
     }
 
-    @GetMapping(path = "users")
+    @GetMapping(path = "allUsers")
     public List<UserDto> getAllUsers() {
-        return service.getUsers();
+        return userService.getUsers();
     }
 
-    @GetMapping(path = "orders")
+    @GetMapping(path = "allOrders")
     public List<LunchOrderDto> getLunchOrders() {
-        return service.getLunchOrders();
+        return userService.getLunchOrders();
     }
-
 }

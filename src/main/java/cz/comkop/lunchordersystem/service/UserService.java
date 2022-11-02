@@ -10,24 +10,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Service
-public class Service {
+public class UserService {
     private final LunchOrderRepository lunchOrderRepository;
     private final UserRepository userRepository;
-    private final Mapper mapper;
+    private final UserMapper userMapper;
 
     @Autowired
-    public Service(LunchOrderRepository lunchOrderRepository, UserRepository userRepository, Mapper mapper) {
+    public UserService(LunchOrderRepository lunchOrderRepository, UserRepository userRepository, UserMapper userMapper) {
         this.lunchOrderRepository = lunchOrderRepository;
         this.userRepository = userRepository;
-        this.mapper = mapper;
+        this.userMapper = userMapper;
     }
 
     public List<LunchOrderDto> getLunchOrders() {
-        return lunchOrderRepository.findAll().stream().map(mapper::toLunchOrderDto).collect(Collectors.toList());
+        return lunchOrderRepository.findAll().stream().map(userMapper::toLunchOrderDto).collect(Collectors.toList());
     }
 
     public List<UserDto> getUsers() {
-        return userRepository.findAll().stream().map(mapper::toUserDto).collect(Collectors.toList());
+        return userRepository.findAll().stream().map(userMapper::toUserDto).collect(Collectors.toList());
     }
 
 }
