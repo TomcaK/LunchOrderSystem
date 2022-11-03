@@ -20,7 +20,7 @@ public class WebController {
         return webService.login(email,password);
     }
     @PostMapping(path = "/register")
-    public int register(String email,String password, String passwordControl){
-    return webService.register(email,password,passwordControl);
+    public int register(String firstName,String secondName,String email,String password, String passwordControl){
+    return webService.register(firstName,secondName,email,password,passwordControl);
     }
 }
