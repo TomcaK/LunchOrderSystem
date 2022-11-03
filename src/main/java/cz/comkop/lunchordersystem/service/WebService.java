@@ -60,4 +60,12 @@ public class WebService {
     public int register(String firstName, String secondName, String email, String password, String passwordControl) {
         return 0;
     }
+
+    public Optional<User> getUserByEmail(String email) {
+        Optional<User> userByEmail = userRepository.findUserByEmail(email);
+        if (userByEmail.isEmpty()){
+            throw new IllegalStateException("email does not exists");
+        }
+        return userRepository.findUserByEmail(email);
+    }
 }
