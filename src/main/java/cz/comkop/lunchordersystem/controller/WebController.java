@@ -8,26 +8,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/obedy")
+@RequestMapping(path = "/obedy")
 public class WebController {
     private final WebService webService;
+
     @Autowired
-    public WebController(WebService webService){
+    public WebController(WebService webService) {
         this.webService = webService;
     }
 
-    @PostMapping(path = "/login")
-    public int login(String email,String password){
-        return webService.login(email,password);
+    @GetMapping
+    public String getIndex() {
+        return "login.html";
     }
+
     @PostMapping(path = "/register")
-    public int register(String firstName,String secondName,String email,String password, String passwordControl){
-    return webService.register(firstName,secondName,email,password,passwordControl);
+    public int register(String firstName, String secondName, String email, String password, String passwordControl) {
+        return webService.register(firstName, secondName, email, password, passwordControl);
     }
 
     //test
     @GetMapping(path = "/email/{email}")
-    public Optional<User> getUserByEmail(@PathVariable("email") String email){
-    return webService.getUserByEmail(email);
+    public Optional<User> getUserByEmail(@PathVariable("email") String email) {
+        return webService.getUserByEmail(email);
     }
 }
