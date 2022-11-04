@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
+@Controller
 @RequestMapping
 public class WebController {
     private final WebService webService;
@@ -18,15 +19,20 @@ public class WebController {
         this.webService = webService;
     }
 
+
     @PostMapping(path = "/register")
-    public String  register(String firstName,String secondName,String email, String password,String passwordControl) {
-        webService.register(firstName, secondName, email, password, passwordControl);
-        return "User added to database";
+    public String register(String firstName, String secondName, String email, String password, String passwordControl) {
+        boolean register = webService.register(firstName, secondName, email, password, passwordControl);
+        if (register){
+           return "user registered";
+        }
+        return "user not found";
     }
 
+
     //test
-    @GetMapping(path = "/email/{email}")
-    public Optional<User> getUserByEmail(@PathVariable("email") String email) {
-        return webService.getUserByEmail(email);
-    }
+//    @GetMapping(path = "/email/{email}")
+//    public Optional<User> getUserByEmail(@PathVariable("email") String email) {
+//        return webService.getUserByEmail(email);
+//    }
 }

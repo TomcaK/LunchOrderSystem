@@ -58,8 +58,9 @@ public class WebService {
         return 0;
     }
 
-    public void register(String firstName, String secondName, String email, String password, String passwordControl) {
+    public boolean register(String firstName, String secondName, String email, String password, String passwordControl) {
         userRepository.save(new User(firstName,secondName,email,password, RoleType.USER));
+        return true;
     }
 
     public Optional<User> getUserByEmail(String email) {
