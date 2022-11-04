@@ -1,6 +1,7 @@
 package cz.comkop.lunchordersystem.service;
 
 import cz.comkop.lunchordersystem.dto.UserLoginDto;
+import cz.comkop.lunchordersystem.model.RoleType;
 import cz.comkop.lunchordersystem.model.User;
 import cz.comkop.lunchordersystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,8 +58,8 @@ public class WebService {
         return 0;
     }
 
-    public int register(String firstName, String secondName, String email, String password, String passwordControl) {
-        return 0;
+    public void register(String firstName, String secondName, String email, String password, String passwordControl) {
+        userRepository.save(new User(firstName,secondName,email,password, RoleType.USER));
     }
 
     public Optional<User> getUserByEmail(String email) {

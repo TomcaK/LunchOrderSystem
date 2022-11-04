@@ -18,15 +18,10 @@ public class WebController {
         this.webService = webService;
     }
 
-    @GetMapping
-    public String getLoginHTMl() {
-        return "login.html";
-    }
-
     @PostMapping(path = "/register")
-    public String  register(String email) {
-        return email;
-       // return webService.register(firstName, secondName, email, password, passwordControl);
+    public String  register(String firstName,String secondName,String email, String password,String passwordControl) {
+        webService.register(firstName, secondName, email, password, passwordControl);
+        return "User added to database";
     }
 
     //test
