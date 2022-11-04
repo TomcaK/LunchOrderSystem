@@ -3,6 +3,7 @@ package cz.comkop.lunchordersystem.controller;
 import cz.comkop.lunchordersystem.model.User;
 import cz.comkop.lunchordersystem.service.WebService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -18,13 +19,14 @@ public class WebController {
     }
 
     @GetMapping
-    public String getIndex() {
+    public String getLoginHTMl() {
         return "login.html";
     }
 
     @PostMapping(path = "/register")
-    public int register(String firstName, String secondName, String email, String password, String passwordControl) {
-        return webService.register(firstName, secondName, email, password, passwordControl);
+    public String  register(String email) {
+        return email;
+       // return webService.register(firstName, secondName, email, password, passwordControl);
     }
 
     //test
