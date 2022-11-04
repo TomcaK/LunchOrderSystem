@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/obedy")
+@RequestMapping
 public class WebController {
     private final WebService webService;
 
