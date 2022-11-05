@@ -13,7 +13,7 @@ body {
 
 .login {
   width: 360px;
-  height: 280px;
+  height: 300px;
   margin: auto;
   border-radius: 3px;
   background-color: white;
@@ -48,7 +48,7 @@ form input {
   outline: none;
 }
 input[type="submit"] {
- width: 320px;
+  width: 320px;
   height: 35px;
   margin-top: 20px;
   border: none;
