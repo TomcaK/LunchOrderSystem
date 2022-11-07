@@ -4,23 +4,19 @@ import cz.comkop.lunchordersystem.dto.UserLoginDto;
 import cz.comkop.lunchordersystem.model.RoleType;
 import cz.comkop.lunchordersystem.model.User;
 import cz.comkop.lunchordersystem.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class WebService {
+@RequiredArgsConstructor
+public class LoginService {
     private final UserRepository userRepository;
     private final PasswordService passwordService;
     private final Mapper mapper;
 
-    @Autowired
-    public WebService(UserRepository userRepository, Mapper mapper, PasswordService passwordService) {
-        this.userRepository = userRepository;
-        this.mapper = mapper;
-        this.passwordService = passwordService;
-    }
 
     //nevim, zda nebude chtit User parametr
     private Optional<User> doesUserExists(String email) {
