@@ -22,6 +22,11 @@ public class LoginController {
         return "user not found";
     }
 
+    @PostMapping(path = "/login")
+    public void login(String email) {
+        loginService.loadUserByUsername(email);
+    }
+
     //message when something is wrong
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)

@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,7 +20,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class LoginService implements UserDetailsService {
     private final UserRepository userRepository;
-    private final PasswordService passwordService;
+
+    private final PasswordEncoder encoder;
     private final Mapper mapper;
 
 
@@ -47,7 +49,7 @@ public class LoginService implements UserDetailsService {
 
 
     public boolean register(String firstName, String secondName, String email, String password, String passwordControl) {
-        userRepository.save(new User(firstName, secondName, email, passwordService.encoder().encode(password), RoleType.USER));
+        userRepository.save(new User(firstName, secondName, email, encoder.encode(password), RoleType.USER));
         return true;
     }
 

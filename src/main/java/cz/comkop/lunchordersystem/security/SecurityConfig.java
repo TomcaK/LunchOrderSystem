@@ -1,7 +1,6 @@
 package cz.comkop.lunchordersystem.security;
 
 import cz.comkop.lunchordersystem.service.LoginService;
-import cz.comkop.lunchordersystem.service.PasswordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +9,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -17,7 +17,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final LoginService loginService;
-    private final PasswordService passwordService;
+    private final PasswordEncoder encoder;
+
+//    @Bean
+//    public PasswordEncoder encoderBean() {
+//        return new BCryptPasswordEncoder();
+//    }
+
 
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
@@ -28,25 +34,19 @@ public class SecurityConfig {
                 .and().authorizeRequests()
                 .antMatchers("/signup").permitAll()
                 .antMatchers("/api/admin/**").hasAuthority("ADMIN")
-                .antMatchers("/api/user/**").hasRole("USER")
+                .antMatchers("/api/user/**").hasAuthority("USER")
                 .and()
                 .formLogin().and()
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }
 
-//    @Bean
-//    public BCryptPasswordEncoder encoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-
     @Bean
     public AuthenticationManager authenticationManagerBean(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
         authenticationManagerBuilder
                 .userDetailsService(loginService)
-                .passwordEncoder(passwordService.encoder());
-
+                .passwordEncoder(encoder);
         return authenticationManagerBuilder.build();
     }
 }

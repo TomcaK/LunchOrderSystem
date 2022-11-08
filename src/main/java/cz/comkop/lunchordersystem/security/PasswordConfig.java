@@ -1,17 +1,16 @@
-package cz.comkop.lunchordersystem.service;
+package cz.comkop.lunchordersystem.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @RequiredArgsConstructor
-public class PasswordService {
-
-
-    public BCryptPasswordEncoder encoder() {
+public class PasswordConfig {
+    @Bean
+    public PasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
     }
 }

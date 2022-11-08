@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
@@ -17,11 +17,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DevelopmentConfig {
 
+    private final PasswordEncoder encoder;
 
     @Bean
     CommandLineRunner commandLineRunner(LunchOrderRepository lunchOrderRepository, UserRepository userRepository) {
         return args -> {
-            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
             List<User> users = List.of(
                     new User("Tomáš", "Kopuletý", "tomcakopulety@seznam.cz", encoder.encode("Nik"), RoleType.ADMIN),
                     new User("Filip", "Boleloucký", "Superfilip@email.cz", encoder.encode("Superfilip22"), RoleType.USER)

@@ -2,7 +2,6 @@ package cz.comkop.lunchordersystem.service;
 
 import cz.comkop.lunchordersystem.dto.LunchOrderDto;
 import cz.comkop.lunchordersystem.dto.UserDto;
-import cz.comkop.lunchordersystem.model.LunchOrder;
 import cz.comkop.lunchordersystem.model.User;
 import cz.comkop.lunchordersystem.repository.LunchOrderRepository;
 import cz.comkop.lunchordersystem.repository.UserRepository;
@@ -15,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class UserService{
+public class UserService {
     private final LunchOrderRepository lunchOrderRepository;
     private final UserRepository userRepository;
     private final Mapper mapper;
@@ -29,11 +28,12 @@ public class UserService{
     public List<UserDto> getUsersDto() {
         return userRepository.findAll().stream().map(mapper::toUserDto).collect(Collectors.toList());
     }
+
     public List<User> getUsers() {
         return userRepository.findAll();
     }
 
-    public String getOrder(){
+    public String getOrder() {
         return authenticationFacade.getAuthentication().getName();
     }
 
