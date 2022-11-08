@@ -19,12 +19,12 @@ public class AuthenticationController {
         if (register) {
             return "user registered";
         }
-        return "user not found";
+        return "user already exists";
     }
 
     @PostMapping(path = "/login")
-    public ResponseEntity<HttpStatus> login(String email,String password) {
-        return authenticationService.login(email,password);
+    public ResponseEntity<HttpStatus> login(String email, String password) {
+        return authenticationService.login(email, password);
     }
 
     //message when something is wrong

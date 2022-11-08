@@ -10,13 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Optional;
 
 @Service
@@ -29,8 +28,8 @@ public class AuthenticationService {
 
 
     //nevim, zda nebude chtit User parametr
-    private Optional<User> doesUserExists(String email) {
-        return userRepository.findUserByEmail(email);
+    private boolean doesUserExists(String email) {
+        return findUserByEmail(email).isPresent();
     }
 
     private UserLoginDto toUserLoginDto(User user) {
@@ -52,23 +51,23 @@ public class AuthenticationService {
 
 
     public boolean register(String firstName, String secondName, String email, String password, String passwordControl) {
-        userRepository.save(new User(firstName, secondName, email, encoder.encode(password), RoleType.ROLE_USER));
-        return true;
+        if (!doesUserExists(email)) {
+            userRepository.save(new User(firstName, secondName, email, encoder.encode(password), RoleType.ROLE_USER));
+            return true;
+        }
+        return false;
     }
 
-    private UserLoginDto getUserByEmail(String email) {
+    private Optional<User> findUserByEmail(String email) {
         Optional<User> user = userRepository.findUserByEmail(email);
-        if (user.isEmpty()) {
-            throw new IllegalStateException("email does not exists");
-        }
-        return mapper.toUserLoginDto(user.get());
+        return user;
     }
 
     public ResponseEntity<HttpStatus> login(String email, String password) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(email, password, new ArrayList<>()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
