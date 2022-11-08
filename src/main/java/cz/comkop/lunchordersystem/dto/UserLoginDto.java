@@ -1,5 +1,6 @@
 package cz.comkop.lunchordersystem.dto;
 
+import cz.comkop.lunchordersystem.model.RoleType;
 import cz.comkop.lunchordersystem.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,4 +10,5 @@ import lombok.Getter;
 public class UserLoginDto {
     private final String email;
     private final String password;
+    private final RoleType role;
 }

@@ -6,7 +6,6 @@ import cz.comkop.lunchordersystem.model.LunchOrder;
 import cz.comkop.lunchordersystem.model.User;
 import cz.comkop.lunchordersystem.repository.LunchOrderRepository;
 import cz.comkop.lunchordersystem.repository.UserRepository;
-import cz.comkop.lunchordersystem.security.AuthenticationFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +19,7 @@ public class UserService {
     private final LunchOrderRepository lunchOrderRepository;
     private final UserRepository userRepository;
     private final Mapper mapper;
-    private final AuthenticationFacade authenticationFacade;
+
 
 
     public List<LunchOrderDto> getLunchOrders() {
@@ -35,10 +34,5 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Optional<LunchOrder> getOrder() {
-        Optional<User> user = userRepository.findUserByEmail(authenticationFacade.getAuthentication().getName());
-        if (user.isEmpty()) {
-        }
-        return lunchOrderRepository.findById(user.get().getLunchOrder().getId());
-    }
+
 }

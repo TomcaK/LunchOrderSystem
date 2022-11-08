@@ -1,6 +1,6 @@
 package cz.comkop.lunchordersystem.api;
 
-import cz.comkop.lunchordersystem.service.LoginService;
+import cz.comkop.lunchordersystem.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping
 @RequiredArgsConstructor
-public class LoginController {
-    private final LoginService loginService;
+public class AuthenticationController {
+    private final AuthenticationService authenticationService;
 
     @PostMapping(path = "/register")
     public String register(String firstName, String secondName, String email, String password, String passwordControl) {
-        boolean register = loginService.register(firstName, secondName, email, password, passwordControl);
+        boolean register = authenticationService.register(firstName, secondName, email, password, passwordControl);
         if (register) {
             return "user registered";
         }
@@ -23,8 +23,8 @@ public class LoginController {
     }
 
     @PostMapping(path = "/login")
-    public void login(String email) {
-        loginService.loadUserByUsername(email);
+    public ResponseEntity<HttpStatus> login(String email,String password) {
+        return authenticationService.login(email,password);
     }
 
     //message when something is wrong
@@ -44,6 +44,6 @@ public class LoginController {
     //test
 //    @GetMapping(path = "/email/{email}")
 //    public Optional<User> getUserByEmail(@PathVariable("email") String email) {
-//        return loginService.getUserByEmail(email);
+//        return authenticationService.getUserByEmail(email);
 //    }
 }

@@ -24,8 +24,8 @@ public class DevelopmentConfig {
         return args -> {
 
             List<User> users = List.of(
-                    new User("Tomáš", "Kopuletý", "tomcakopulety@seznam.cz", encoder.encode("Nik"), RoleType.ADMIN),
-                    new User("Filip", "Boleloucký", "Superfilip@email.cz", encoder.encode("Superfilip22"), RoleType.USER)
+                    new User("Tomáš", "Kopuletý", "tomcakopulety@seznam.cz", encoder.encode("Nik"), RoleType.ROLE_ADMIN),
+                    new User("Filip", "Boleloucký", "Superfilip@email.cz", encoder.encode("Superfilip22"), RoleType.ROLE_USER)
             );
             List<LunchOrder> orders = List.of(
                     new LunchOrder(0, 1, 3, 0, 5, users.get(0)),

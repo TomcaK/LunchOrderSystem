@@ -22,7 +22,7 @@ public class Mapper {
     }
 
     public UserLoginDto toUserLoginDto(User user){
-        return new UserLoginDto(user.getEmail(), user.getPassword());
+        return new UserLoginDto(user.getEmail(), user.getPassword(),user.getRole());
     }
 
 }

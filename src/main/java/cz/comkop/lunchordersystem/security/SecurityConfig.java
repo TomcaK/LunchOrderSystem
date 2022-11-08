@@ -1,6 +1,5 @@
 package cz.comkop.lunchordersystem.security;
 
-import cz.comkop.lunchordersystem.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,15 +8,13 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-    private final LoginService loginService;
-    private final PasswordEncoder encoder;
+    private final CustomAuthenticationProvider provider;
 
 //    @Bean
 //    public PasswordEncoder encoderBean() {
@@ -29,15 +26,11 @@ public class SecurityConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         return http.csrf().disable().headers().frameOptions().disable().and()
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/h2-console/**").permitAll()
-                .and().authorizeRequests()
-                .antMatchers("/signup").permitAll()
-                .antMatchers("/api/admin/**").hasAuthority("ADMIN")
-                .antMatchers("/api/user/**").hasAuthority("USER")
-                .antMatchers("/api/user/**").hasAuthority("ADMIN")
+                .antMatchers("/", "/register", "/login", "h2-console/**").permitAll()
+                .antMatchers("/api/user/**").hasAnyRole("USER","ADMIN")
+                .antMatchers("/api/admin/**").hasRole("ADMIN")
+                .and().formLogin()
                 .and()
-                .formLogin().and()
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }
@@ -45,9 +38,7 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authenticationManagerBean(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
-        authenticationManagerBuilder
-                .userDetailsService(loginService)
-                .passwordEncoder(encoder);
+        authenticationManagerBuilder.authenticationProvider(provider);
         return authenticationManagerBuilder.build();
     }
 }
