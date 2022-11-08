@@ -3,6 +3,7 @@ package cz.comkop.lunchordersystem.api;
 import cz.comkop.lunchordersystem.dto.LunchOrderDto;
 import cz.comkop.lunchordersystem.dto.UserDto;
 import cz.comkop.lunchordersystem.model.User;
+import cz.comkop.lunchordersystem.security.AuthenticationFacade;
 import cz.comkop.lunchordersystem.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminController {
     private final UserService userService;
+
 
 
 

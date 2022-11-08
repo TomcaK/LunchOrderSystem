@@ -35,6 +35,7 @@ public class SecurityConfig {
                 .antMatchers("/signup").permitAll()
                 .antMatchers("/api/admin/**").hasAuthority("ADMIN")
                 .antMatchers("/api/user/**").hasAuthority("USER")
+                .antMatchers("/api/user/**").hasAuthority("ADMIN")
                 .and()
                 .formLogin().and()
                 .httpBasic(Customizer.withDefaults())

@@ -2,6 +2,7 @@ package cz.comkop.lunchordersystem.service;
 
 import cz.comkop.lunchordersystem.dto.LunchOrderDto;
 import cz.comkop.lunchordersystem.dto.UserDto;
+import cz.comkop.lunchordersystem.model.LunchOrder;
 import cz.comkop.lunchordersystem.model.User;
 import cz.comkop.lunchordersystem.repository.LunchOrderRepository;
 import cz.comkop.lunchordersystem.repository.UserRepository;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,9 +35,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public String getOrder() {
-        return authenticationFacade.getAuthentication().getName();
+    public Optional<LunchOrder> getOrder() {
+        Optional<User> user = userRepository.findUserByEmail(authenticationFacade.getAuthentication().getName());
+        if (user.isEmpty()) {
+        }
+        return lunchOrderRepository.findById(user.get().getLunchOrder().getId());
     }
-
-
 }
