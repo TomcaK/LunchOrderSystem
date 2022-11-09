@@ -16,12 +16,6 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
     private final CustomAuthenticationProvider provider;
 
-//    @Bean
-//    public PasswordEncoder encoderBean() {
-//        return new BCryptPasswordEncoder();
-//    }
-
-
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         return http.csrf().disable().headers().frameOptions().disable().and()

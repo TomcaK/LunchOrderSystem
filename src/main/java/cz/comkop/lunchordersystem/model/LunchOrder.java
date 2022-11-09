@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import net.bytebuddy.asm.Advice;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -18,7 +17,7 @@ public class LunchOrder {
     @Id
     @GeneratedValue
     private int id;
-    private LocalDate date;
+    private String week;
     private int monday;
     private int tuesday;
     private int wednesday;
@@ -26,9 +25,8 @@ public class LunchOrder {
     private int friday;
     @OneToOne
     @JsonIgnore
-    @JoinColumn(name = "user_id",nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
 
 
     public LunchOrder(int monday, int tuesday, int wednesday, int thursday, int friday, User user) {
@@ -38,6 +36,25 @@ public class LunchOrder {
         this.thursday = thursday;
         this.friday = friday;
         this.user = user;
-        this.date = LocalDate.now();
+        this.week = getWeek();
     }
+
+    private String getWeek() {
+        LocalDate date = LocalDate.now();
+        int monday = Math.abs(date.getDayOfWeek().getValue() - 1);
+        int friday = Math.abs(date.getDayOfWeek().getValue() - 5);
+//        LocalDate weekStart = LocalDate.of(date.getYear(), date.getMonthValue(), date.getDayOfMonth() - differenceOfDayFromMonday);
+//    LocalDate weekEnd = LocalDate.of(date.getYear(),date.getMonthValue(),date.getDayOfMonth()+ differenceOfDayToFriday);
+        return null;
+    }
+
+//Week of
+//
+//    LocalDate weekStart = LocalDate.of(date.getYear(),date.getMonthValue(),date.getDayOfMonth()-differenceOfDayFromMonday);
+//    LocalDate weekEnd = LocalDate.of(date.getYear(),date.getMonthValue(),date.getDayOfMonth()+ differenceOfDayToFriday);
+//        System.out.println(differenceOfDayFromMonday);
+//        System.out.println(weekStart);
+//        System.out.println(weekEnd);
+//    period = Period.between(weekStart,weekEnd);
+//String week = String.format("%s - %s",weekStart.format(DateTimeFormatter.ofPattern("d.M.y")),weekEnd.format(DateTimeFormatter.ofPattern("d.M.y")));
 }
