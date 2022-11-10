@@ -47,7 +47,7 @@ form input {
   border-radius: 6px;
   outline: none;
 }
-input[type="submit"] {
+button {
   width: 320px;
   height: 35px;
   margin-top: 20px;
@@ -71,3 +71,19 @@ p {
   color: #49c1a2;
 }
 
+.pass-reset {
+  width: 360px;
+  height: 300px;
+  margin: auto;
+  border-radius: 3px;
+  background-color: white;
+}
+.password-reset {
+  text-align: center;
+  color: white;
+  font-size: 15px;
+  margin-top: -10px;
+}
+.password-reset a {
+  color: #49c1a2;
+}
