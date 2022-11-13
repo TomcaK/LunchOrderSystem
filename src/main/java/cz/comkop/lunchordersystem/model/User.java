@@ -11,18 +11,16 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
-    @Id
-    @GeneratedValue
-    private int id;
     private RoleType role;
     private String firstName;
     private String secondName;
+    @Id
     private String email;
     private String password;
     @OneToOne(mappedBy = "user")
     private LunchOrder lunchOrder;
 
-    public User(String firstName, String secondName, String email, String password,RoleType role) {
+    public User(String firstName, String secondName, String email, String password, RoleType role) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.email = email;

@@ -28,7 +28,7 @@ public class LunchOrder {
     private int friday;
     @OneToOne
     @JsonIgnore
-    @JoinColumn(name = "userId", nullable = false)
+    @JoinColumn(name = "userEmail", nullable = false)
     private User user;
 
 
