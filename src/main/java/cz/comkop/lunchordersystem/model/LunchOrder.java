@@ -6,6 +6,7 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Getter
@@ -21,15 +22,21 @@ public class LunchOrder {
     private LocalDate fromDate;
 
     private LocalDate toDate;
+    private LocalDateTime created;
+    private LocalDateTime updated;
     private int monday;
     private int tuesday;
     private int wednesday;
     private int thursday;
     private int friday;
-    @OneToOne
+    @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "userEmail", nullable = false)
+    @JoinColumn(name = "user_email", nullable = false)
     private User user;
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "updated_by")
+    private User updatedBy;
 
 
     public LunchOrder(int monday, int tuesday, int wednesday, int thursday, int friday, User user) {
@@ -42,6 +49,7 @@ public class LunchOrder {
         LocalDate date = LocalDate.now();
         this.fromDate = createFromDate(date);
         this.toDate = createToDate(date);
+        created = LocalDateTime.now();
     }
 
     private LocalDate createFromDate(LocalDate date) {
