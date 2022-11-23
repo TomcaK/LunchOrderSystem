@@ -1,6 +1,7 @@
 package cz.comkop.lunchordersystem.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import cz.comkop.lunchordersystem.util.WeekUtil;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -47,20 +48,10 @@ public class LunchOrder {
         this.friday = friday;
         this.user = user;
         LocalDate date = LocalDate.now();
-        this.fromDate = createFromDate(date);
-        this.toDate = createToDate(date);
+        this.fromDate = WeekUtil.getWeek()[0];
+        this.toDate = WeekUtil.getWeek()[1];
         created = LocalDateTime.now();
     }
-
-    private LocalDate createFromDate(LocalDate date) {
-        return LocalDate.of(date.getYear(), date.getMonthValue(), date.getDayOfMonth() - (date.getDayOfWeek().getValue() - 1));
-    }
-
-    private LocalDate createToDate(LocalDate date) {
-        return LocalDate.of(date.getYear(), date.getMonthValue(), date.getDayOfMonth() + (Math.abs(date.getDayOfWeek().getValue() - 5)));
-    }
-
-
 
 //    public LunchOrder(LocalDate fromDate, LocalDate toDate, int monday, int tuesday, int wednesday, int thursday, int friday, User user) {
 //        this.monday = monday;
