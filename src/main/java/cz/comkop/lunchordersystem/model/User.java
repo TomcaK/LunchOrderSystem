@@ -17,8 +17,8 @@ public class User {
     @Id
     private String email;
     private String password;
-    @OneToOne(mappedBy = "user")
-    private LunchOrder lunchOrder;
+    @OneToMany(mappedBy = "user")
+    private List<LunchOrder> lunchOrders;
 
     public User(String firstName, String secondName, String email, String password, RoleType role) {
         this.firstName = firstName;

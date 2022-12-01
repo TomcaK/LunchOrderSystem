@@ -18,7 +18,7 @@ public class Mapper {
     }
 
     public UserDto toUserDto(User user) {
-        return new UserDto(user.getFirstName(), user.getSecondName(),user.getLunchOrder());
+        return new UserDto(user.getFirstName(), user.getSecondName(),user.getLunchOrders());
     }
 
     public UserLoginDto toUserLoginDto(User user){
