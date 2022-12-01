@@ -21,9 +21,12 @@ public class LunchOffer {
     private long id;
     private LocalDate fromDate;
     private LocalDate toDate;
+    private byte picture;
 
-    public LunchOffer(LocalDate date) {
-        this.fromDate = WeekUtil.getWeek()[0];
+    public LunchOffer(LocalDate date, byte picture) {
+        this.fromDate = WeekUtil.getStartOfWeek();
         this.toDate = WeekUtil.getEndOfWeek(date);
+        this.picture = picture;
+
     }
 }

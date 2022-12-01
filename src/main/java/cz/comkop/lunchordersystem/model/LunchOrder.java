@@ -48,32 +48,8 @@ public class LunchOrder {
         this.friday = friday;
         this.user = user;
         LocalDate date = LocalDate.now();
-        this.fromDate = WeekUtil.getWeek()[0];
-        this.toDate = WeekUtil.getWeek()[1];
+        this.fromDate = WeekUtil.getStartOfWeek();
+        this.toDate = WeekUtil.getEndOfWeek(LocalDate.now());
         created = LocalDateTime.now();
     }
-
-//    public LunchOrder(LocalDate fromDate, LocalDate toDate, int monday, int tuesday, int wednesday, int thursday, int friday, User user) {
-//        this.monday = monday;
-//        this.tuesday = tuesday;
-//        this.wednesday = wednesday;
-//        this.thursday = thursday;
-//        this.friday = friday;
-//        this.user = user;
-//        this.fromDate = fromDate;
-//        this.toDate = toDate;
-//    }
-
-
-//Week of
-//
-//    LocalDate weekStart = LocalDate.of(date.getYear(),date.getMonthValue(),date.getDayOfMonth()-differenceOfDayFromMonday);
-//    LocalDate weekEnd = LocalDate.of(date.getYear(),date.getMonthValue(),date.getDayOfMonth()+ differenceOfDayToFriday);
-//        System.out.println(differenceOfDayFromMonday);
-//        System.out.println(weekStart);
-//        System.out.println(weekEnd);
-//    period = Period.between(weekStart,weekEnd);
-//String week = String.format("%s - %s",weekStart.format(DateTimeFormatter.ofPattern("d.M.y")),weekEnd.format(DateTimeFormatter.ofPattern("d.M.y")));
-
-
 }
