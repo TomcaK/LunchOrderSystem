@@ -1,14 +1,15 @@
 package cz.comkop.lunchordersystem.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import cz.comkop.lunchordersystem.util.WeekUtil;
-import lombok.*;
-import org.hibernate.Hibernate;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -23,7 +24,9 @@ public class LunchOrder {
     private LocalDate fromDate;
 
     private LocalDate toDate;
+    @CreationTimestamp
     private LocalDateTime created;
+    @UpdateTimestamp
     private LocalDateTime updated;
     private int monday;
     private int tuesday;
@@ -31,11 +34,9 @@ public class LunchOrder {
     private int thursday;
     private int friday;
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "user_email", nullable = false)
     private User user;
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "updated_by")
     private User updatedBy;
 
@@ -47,9 +48,7 @@ public class LunchOrder {
         this.thursday = thursday;
         this.friday = friday;
         this.user = user;
-        LocalDate date = LocalDate.now();
         this.fromDate = WeekUtil.getStartOfWeek();
         this.toDate = WeekUtil.getEndOfWeek(LocalDate.now());
-        created = LocalDateTime.now();
     }
 }

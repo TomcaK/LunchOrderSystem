@@ -2,7 +2,7 @@ package cz.comkop.lunchordersystem.api;
 
 import cz.comkop.lunchordersystem.dto.LunchOrderDto;
 import cz.comkop.lunchordersystem.dto.UserDto;
-import cz.comkop.lunchordersystem.model.User;
+import cz.comkop.lunchordersystem.service.AdminService;
 import cz.comkop.lunchordersystem.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,21 +17,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminController {
     private final UserService userService;
+    private final AdminService adminService;
 
 
 
 
-    @GetMapping(path = "/allDtoUsers")
-    public ResponseEntity<List<UserDto>> getAllUsersDto() {
-        return ResponseEntity.ok().body(userService.getUsersDto());
-    }
     @GetMapping(path = "/allUsers")
-    public ResponseEntity<List<User>> getAllUsers() {
-        return ResponseEntity.ok().body(userService.getUsers());
+    public ResponseEntity<List<UserDto>> getAllUsersDto() {
+        return ResponseEntity.ok().body(adminService.getUsersDto());
     }
 
     @GetMapping(path = "/allOrders")
-    public List<LunchOrderDto> getLunchOrders() {
-        return userService.getLunchOrders();
+    public List<LunchOrderDto> getLunchOrdersDto() {
+       return adminService.getLunchOrdersDto();
     }
 }
