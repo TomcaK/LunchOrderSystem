@@ -31,13 +31,15 @@ public class LunchOrder {
     private int wednesday;
     private int thursday;
     private int friday;
+    @ManyToOne
+    @JoinColumn(name = "created_by",nullable = false)
+    private User createdBy;
+    @ManyToOne
+    @JoinColumn(name = "updated_by")
+    private User updateBy;
 
-    private long createdBy;
-    private long updateBy;
 
-
-
-    public LunchOrder(long id, int monday, int tuesday, int wednesday, int thursday, int friday, long createdBy) {
+    public LunchOrder(long id, int monday, int tuesday, int wednesday, int thursday, int friday, User createdBy) {
         this.id = id;
         this.monday = monday;
         this.tuesday = tuesday;

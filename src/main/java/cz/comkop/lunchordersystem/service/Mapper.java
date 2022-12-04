@@ -21,7 +21,7 @@ public class Mapper {
                 lunchOrder.getToDate());
     }
 
-    public LunchOrder toLunchOrder(long id, LunchOrderDto lunchOrderDto, long createdBy) {
+    public LunchOrder toLunchOrder(long id, LunchOrderDto lunchOrderDto, User createdBy) {
         return new LunchOrder(id, lunchOrderDto.getMonday(), lunchOrderDto.getTuesday(), lunchOrderDto.getWednesday(), lunchOrderDto.getThursday(), lunchOrderDto.getFriday(), createdBy);
     }
 
