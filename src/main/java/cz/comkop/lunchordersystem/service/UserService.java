@@ -36,9 +36,4 @@ public class UserService {
         LunchOrder order = mapper.toLunchOrder(orderId, lunchOrderDto, user.get());
         lunchOrderRepository.save(order);
     }
-
-    public void setUserId(long id){
-        this.userId = id;
-        System.out.println("******************************************************************************************id: " + id);
-    }
 }

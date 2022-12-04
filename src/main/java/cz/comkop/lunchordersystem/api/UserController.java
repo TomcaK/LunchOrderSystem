@@ -23,6 +23,4 @@ public class UserController {
     public List<LunchOrderDto> getUserLunchOrders() {
         return userService.getUserLunchOrders();
     }
-
-
 }

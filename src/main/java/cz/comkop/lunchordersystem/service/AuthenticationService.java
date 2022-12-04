@@ -55,7 +55,6 @@ public class AuthenticationService {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(email, password, new ArrayList<>()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        userService.setUserId(userRepository.findByEmail(email).get().getId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
