@@ -11,17 +11,17 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
-
+    @Id
+    private long id;
     private RoleType role;
     private String firstName;
     private String secondName;
-    @Id
+
     private String email;
     private String password;
-    @OneToMany(mappedBy = "user")
-    private List<LunchOrder> lunchOrders;
 
-    public User(String firstName, String secondName, String email, String password, RoleType role) {
+    public User(long id,String firstName, String secondName, String email, String password, RoleType role) {
+        this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
         this.email = email;

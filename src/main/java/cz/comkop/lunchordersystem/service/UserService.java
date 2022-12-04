@@ -7,7 +7,6 @@ import cz.comkop.lunchordersystem.repository.LunchOrderRepository;
 import cz.comkop.lunchordersystem.repository.UserRepository;
 import cz.comkop.lunchordersystem.util.IdUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,16 +23,14 @@ public class UserService {
 
 
     public List<LunchOrderDto> getUserLunchOrders() {
-        Optional<User> user = userRepository.findById(SecurityContextHolder.getContext().getAuthentication().getName());
-        return lunchOrderRepository.findAllByUser(user.get()).stream()
+        return lunchOrderRepository.findAllByUserId(userId).stream()
                 .map(mapper::toLunchOrderDto)
                 .collect(Collectors.toList());
     }
 
     public void newLunchOrder(LunchOrderDto lunchOrderDto) {
         long orderId = IdUtil.getFreeId(lunchOrderRepository.getIds());
-        Optional<User> user = userRepository.findById(SecurityContextHolder.getContext().getAuthentication().getName());
-        LunchOrder order = mapper.toLunchOrder(orderId, lunchOrderDto, user.get());
+        LunchOrder order = mapper.toLunchOrder(orderId, lunchOrderDto, userId);
         lunchOrderRepository.save(order);
     }
 

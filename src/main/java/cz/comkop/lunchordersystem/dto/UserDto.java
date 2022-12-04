@@ -13,5 +13,4 @@ import java.util.List;
 public class UserDto {
     private String firstName;
     private String secondName;
-    private List<LunchOrder> lunchOrders;
 }

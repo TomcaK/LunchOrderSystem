@@ -21,7 +21,6 @@ public class LunchOrder {
     @Id
     private long id;
     private LocalDate fromDate;
-
     private LocalDate toDate;
     @CreationTimestamp
     private LocalDateTime created;
@@ -32,20 +31,20 @@ public class LunchOrder {
     private int wednesday;
     private int thursday;
     private int friday;
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+
+    private long createdBy;
+    private long updateBy;
 
 
 
-    public LunchOrder(long id,int monday, int tuesday, int wednesday, int thursday, int friday, User user) {
+    public LunchOrder(long id, int monday, int tuesday, int wednesday, int thursday, int friday, long createdBy) {
         this.id = id;
         this.monday = monday;
         this.tuesday = tuesday;
         this.wednesday = wednesday;
         this.thursday = thursday;
         this.friday = friday;
-        this.user = user;
+        this.createdBy = createdBy;
         this.fromDate = WeekUtil.getStartOfWeek();
         this.toDate = WeekUtil.getEndOfWeek(fromDate);
     }

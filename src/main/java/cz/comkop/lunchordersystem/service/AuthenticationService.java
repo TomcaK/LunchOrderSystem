@@ -12,12 +12,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -48,17 +46,16 @@ public class AuthenticationService {
 
 
     public boolean register(String firstName, String secondName, String email, String password, String passwordControl) {
-        if (userRepository.findById(email).isEmpty()) {
-            userRepository.save(new User(firstName, secondName, email, encoder.encode(password), RoleType.ROLE_USER));
-            return true;
-        }
-        return false;
+        long id = IdUtil.getFreeId(userRepository.getIds());
+        userRepository.save(new User(id, firstName, secondName, email, encoder.encode(password), RoleType.ROLE_USER));
+        return true;
     }
 
     public ResponseEntity<HttpStatus> login(String email, String password) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(email, password, new ArrayList<>()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
+        userService.setUserId(userRepository.findByEmail(email).get().getId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
