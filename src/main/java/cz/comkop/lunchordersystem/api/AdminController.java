@@ -20,8 +20,6 @@ public class AdminController {
     private final AdminService adminService;
 
 
-
-
     @GetMapping(path = "/allUsers")
     public ResponseEntity<List<UserDto>> getAllUsersDto() {
         return ResponseEntity.ok().body(adminService.getUsersDto());
@@ -29,6 +27,15 @@ public class AdminController {
 
     @GetMapping(path = "/allOrders")
     public List<LunchOrderDto> getLunchOrdersDto() {
-       return adminService.getLunchOrdersDto();
+        return adminService.getLunchOrdersDto();
+    }
+
+    @GetMapping(path = "/allIds")
+    public List<Long> getAllIds() {
+        return adminService.getAllIds();
+    }
+    @GetMapping(path = "freeId")
+    public Long getNextFreeId(){
+        return adminService.getFreeId();
     }
 }

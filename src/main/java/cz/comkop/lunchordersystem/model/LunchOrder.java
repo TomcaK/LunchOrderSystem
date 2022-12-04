@@ -19,8 +19,7 @@ import java.time.LocalDateTime;
 
 public class LunchOrder {
     @Id
-    @GeneratedValue
-    private int id;
+    private long id;
     private LocalDate fromDate;
 
     private LocalDate toDate;
@@ -34,14 +33,13 @@ public class LunchOrder {
     private int thursday;
     private int friday;
     @ManyToOne
-    @JoinColumn(name = "user_email", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
-    @ManyToOne
-    @JoinColumn(name = "updated_by")
-    private User updatedBy;
 
 
-    public LunchOrder(int monday, int tuesday, int wednesday, int thursday, int friday, User user) {
+
+    public LunchOrder(long id,int monday, int tuesday, int wednesday, int thursday, int friday, User user) {
+        this.id = id;
         this.monday = monday;
         this.tuesday = tuesday;
         this.wednesday = wednesday;
@@ -49,6 +47,6 @@ public class LunchOrder {
         this.friday = friday;
         this.user = user;
         this.fromDate = WeekUtil.getStartOfWeek();
-        this.toDate = WeekUtil.getEndOfWeek(LocalDate.now());
+        this.toDate = WeekUtil.getEndOfWeek(fromDate);
     }
 }

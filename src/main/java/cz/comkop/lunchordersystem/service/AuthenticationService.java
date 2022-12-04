@@ -4,6 +4,7 @@ import cz.comkop.lunchordersystem.dto.UserLoginDto;
 import cz.comkop.lunchordersystem.model.RoleType;
 import cz.comkop.lunchordersystem.model.User;
 import cz.comkop.lunchordersystem.repository.UserRepository;
+import cz.comkop.lunchordersystem.util.IdUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,14 +24,10 @@ import java.util.Optional;
 public class AuthenticationService {
     private final UserRepository userRepository;
     private final AuthenticationManager authenticationManager;
+    private final UserService userService;
     private final PasswordEncoder encoder;
     private final Mapper mapper;
 
-
-    //nevim, zda nebude chtit User parametr
-    private boolean doesUserExists(String email) {
-        return findUserByEmail(email).isPresent();
-    }
 
     private UserLoginDto toUserLoginDto(User user) {
         return mapper.toUserLoginDto(user);
@@ -51,16 +48,11 @@ public class AuthenticationService {
 
 
     public boolean register(String firstName, String secondName, String email, String password, String passwordControl) {
-        if (!doesUserExists(email)) {
+        if (userRepository.findById(email).isEmpty()) {
             userRepository.save(new User(firstName, secondName, email, encoder.encode(password), RoleType.ROLE_USER));
             return true;
         }
         return false;
-    }
-
-    private Optional<User> findUserByEmail(String email) {
-        Optional<User> user = userRepository.findUserByEmail(email);
-        return user;
     }
 
     public ResponseEntity<HttpStatus> login(String email, String password) {

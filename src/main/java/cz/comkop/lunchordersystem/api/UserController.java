@@ -1,13 +1,11 @@
 package cz.comkop.lunchordersystem.api;
 
 import cz.comkop.lunchordersystem.dto.LunchOrderDto;
-import cz.comkop.lunchordersystem.model.LunchOrder;
 import cz.comkop.lunchordersystem.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 
 @RestController
 @RequestMapping(path = ("/api/user"))
@@ -16,14 +14,14 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping(path = "/newLunchOrder")
-    public void newLunchOrder(@RequestBody int monday, int tuesday, int wednesday, int thursday, int friday){
-        userService.newLunchOrder(monday, tuesday, wednesday, thursday, friday);
+    @PostMapping(path = "/newOrder")
+    public void newLunchOrder(@RequestBody LunchOrderDto lunchOrderDto) {
+        userService.newLunchOrder(lunchOrderDto);
     }
 
-    @GetMapping(value = "/lunchOrders")
-    public void getUserLunchOrders(){
-        userService.getUserLunchOrders();
+    @GetMapping(value = "/orders")
+    public List<LunchOrderDto> getUserLunchOrders() {
+        return userService.getUserLunchOrders();
     }
 
 

@@ -11,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 public class UserDto {
-
     private String firstName;
     private String secondName;
     private List<LunchOrder> lunchOrders;

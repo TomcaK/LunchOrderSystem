@@ -11,15 +11,18 @@ import org.springframework.stereotype.Service;
 public class Mapper {
     public LunchOrderDto toLunchOrderDto(LunchOrder lunchOrder) {
         return new LunchOrderDto(
+                lunchOrder.getId(),
                 lunchOrder.getMonday(),
                 lunchOrder.getTuesday(),
                 lunchOrder.getWednesday(),
                 lunchOrder.getThursday(),
-                lunchOrder.getFriday());
+                lunchOrder.getFriday(),
+                lunchOrder.getFromDate(),
+                lunchOrder.getToDate());
     }
 
-    public LunchOrder toLunchOrder(int monday,int tuesday, int wednesday, int thursday, int friday, User user){
-        return new LunchOrder(monday,tuesday,wednesday,thursday,friday,user);
+    public LunchOrder toLunchOrder(long id, LunchOrderDto lunchOrderDto, User createdBy) {
+        return new LunchOrder(id, lunchOrderDto.getMonday(), lunchOrderDto.getTuesday(), lunchOrderDto.getWednesday(), lunchOrderDto.getThursday(), lunchOrderDto.getFriday(), createdBy);
     }
 
     public UserDto toUserDto(User user) {

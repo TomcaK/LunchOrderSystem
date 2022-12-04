@@ -1,34 +1,43 @@
 package cz.comkop.lunchordersystem.service;
 
 import cz.comkop.lunchordersystem.dto.LunchOrderDto;
-import cz.comkop.lunchordersystem.dto.UserDto;
 import cz.comkop.lunchordersystem.model.LunchOrder;
 import cz.comkop.lunchordersystem.model.User;
 import cz.comkop.lunchordersystem.repository.LunchOrderRepository;
 import cz.comkop.lunchordersystem.repository.UserRepository;
+import cz.comkop.lunchordersystem.util.IdUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
+    private long userId;
     private final LunchOrderRepository lunchOrderRepository;
+    private final UserRepository userRepository;
     private final Mapper mapper;
 
 
     public List<LunchOrderDto> getUserLunchOrders() {
-        return lunchOrderRepository.findAll().stream()
+        Optional<User> user = userRepository.findById(SecurityContextHolder.getContext().getAuthentication().getName());
+        return lunchOrderRepository.findAllByUser(user.get()).stream()
                 .map(mapper::toLunchOrderDto)
                 .collect(Collectors.toList());
     }
 
-    public void newLunchOrder(int monday, int tuesday, int wednesday, int thursday, int friday) {
-        lunchOrderRepository.save(mapper.toLunchOrder(monday, tuesday, wednesday, thursday, friday, (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
+    public void newLunchOrder(LunchOrderDto lunchOrderDto) {
+        long orderId = IdUtil.getFreeId(lunchOrderRepository.getIds());
+        Optional<User> user = userRepository.findById(SecurityContextHolder.getContext().getAuthentication().getName());
+        LunchOrder order = mapper.toLunchOrder(orderId, lunchOrderDto, user.get());
+        lunchOrderRepository.save(order);
+    }
+
+    public void setUserId(long id){
+        this.userId = id;
     }
 }

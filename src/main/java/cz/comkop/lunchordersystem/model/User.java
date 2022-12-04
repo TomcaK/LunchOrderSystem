@@ -11,6 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
+
     private RoleType role;
     private String firstName;
     private String secondName;
