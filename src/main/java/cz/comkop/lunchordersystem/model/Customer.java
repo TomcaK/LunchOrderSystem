@@ -9,8 +9,8 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "customers")
+public class Customer {
     @Id
     private long id;
     private RoleType role;
@@ -19,8 +19,10 @@ public class User {
 
     private String email;
     private String password;
+    @OneToMany(mappedBy = "createdBy")
+    private List<LunchOrder> lunchOrders;
 
-    public User(long id,String firstName, String secondName, String email, String password, RoleType role) {
+    public Customer(long id, String firstName, String secondName, String email, String password, RoleType role) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;

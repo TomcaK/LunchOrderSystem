@@ -43,7 +43,7 @@ public class AuthenticationController {
 
     //test
 //    @GetMapping(path = "/email/{email}")
-//    public Optional<User> getUserByEmail(@PathVariable("email") String email) {
+//    public Optional<Customer> getUserByEmail(@PathVariable("email") String email) {
 //        return authenticationService.getUserByEmail(email);
 //    }
 }

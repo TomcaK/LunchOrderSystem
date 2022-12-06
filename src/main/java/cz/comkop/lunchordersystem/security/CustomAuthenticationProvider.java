@@ -1,7 +1,7 @@
 package cz.comkop.lunchordersystem.security;
 
-import cz.comkop.lunchordersystem.model.User;
-import cz.comkop.lunchordersystem.repository.UserRepository;
+import cz.comkop.lunchordersystem.model.Customer;
+import cz.comkop.lunchordersystem.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -20,16 +20,16 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class CustomAuthenticationProvider implements AuthenticationProvider {
     private final PasswordEncoder encoder;
-    private final UserRepository userRepository;
+    private final CustomerRepository customerRepository;
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
       String email = authentication.getName();
       String password = authentication.getCredentials().toString();
-        User user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        if (encoder.matches(password,user.getPassword())){
+        Customer customer = customerRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("Customer not found"));
+        if (encoder.matches(password, customer.getPassword())){
             Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority(user.getRole().name()));
-            return new UsernamePasswordAuthenticationToken(email,password,authorities);
+            authorities.add(new SimpleGrantedAuthority(customer.getRole().name()));
+            return new UsernamePasswordAuthenticationToken(customer.getId(),password,authorities);
         }else {
             throw  new BadCredentialsException("Invalid credentials");
         }

@@ -1,9 +1,9 @@
 package cz.comkop.lunchordersystem.api;
 
 import cz.comkop.lunchordersystem.dto.LunchOrderDto;
-import cz.comkop.lunchordersystem.dto.UserDto;
+import cz.comkop.lunchordersystem.dto.CustomerDto;
 import cz.comkop.lunchordersystem.service.AdminService;
-import cz.comkop.lunchordersystem.service.UserService;
+import cz.comkop.lunchordersystem.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,12 +16,12 @@ import java.util.List;
 @RequestMapping("/api/admin")
 @RequiredArgsConstructor
 public class AdminController {
-    private final UserService userService;
+    private final CustomerService customerService;
     private final AdminService adminService;
 
 
     @GetMapping(path = "/allUsers")
-    public ResponseEntity<List<UserDto>> getAllUsersDto() {
+    public ResponseEntity<List<CustomerDto>> getAllCustomersDto() {
         return ResponseEntity.ok().body(adminService.getUsersDto());
     }
 

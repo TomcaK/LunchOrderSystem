@@ -1,9 +1,9 @@
 package cz.comkop.lunchordersystem.service;
 
 import cz.comkop.lunchordersystem.dto.LunchOrderDto;
-import cz.comkop.lunchordersystem.dto.UserDto;
+import cz.comkop.lunchordersystem.dto.CustomerDto;
 import cz.comkop.lunchordersystem.repository.LunchOrderRepository;
-import cz.comkop.lunchordersystem.repository.UserRepository;
+import cz.comkop.lunchordersystem.repository.CustomerRepository;
 import cz.comkop.lunchordersystem.util.IdUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,12 +14,12 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class AdminService {
-    private final UserRepository userRepository;
+    private final CustomerRepository customerRepository;
     private final LunchOrderRepository lunchOrderRepository;
     private final Mapper mapper;
 
-    public List<UserDto> getUsersDto() {
-        return userRepository.findAll().stream().map(mapper::toUserDto).collect(Collectors.toList());
+    public List<CustomerDto> getUsersDto() {
+        return customerRepository.findAll().stream().map(mapper::toCustomerDto).collect(Collectors.toList());
     }
 
     public List<LunchOrderDto> getLunchOrdersDto() {

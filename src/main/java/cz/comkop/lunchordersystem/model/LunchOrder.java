@@ -33,13 +33,13 @@ public class LunchOrder {
     private int friday;
     @ManyToOne
     @JoinColumn(name = "created_by",nullable = false)
-    private User createdBy;
+    private Customer createdBy;
     @ManyToOne
     @JoinColumn(name = "updated_by")
-    private User updateBy;
+    private Customer updateBy;
 
 
-    public LunchOrder(long id, int monday, int tuesday, int wednesday, int thursday, int friday, User createdBy) {
+    public LunchOrder(long id, int monday, int tuesday, int wednesday, int thursday, int friday, Customer createdBy) {
         this.id = id;
         this.monday = monday;
         this.tuesday = tuesday;

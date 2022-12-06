@@ -1,10 +1,9 @@
 package cz.comkop.lunchordersystem.service;
 
+import cz.comkop.lunchordersystem.dto.CustomerDto;
 import cz.comkop.lunchordersystem.dto.LunchOrderDto;
-import cz.comkop.lunchordersystem.dto.UserDto;
-import cz.comkop.lunchordersystem.dto.UserLoginDto;
+import cz.comkop.lunchordersystem.model.Customer;
 import cz.comkop.lunchordersystem.model.LunchOrder;
-import cz.comkop.lunchordersystem.model.User;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,16 +20,11 @@ public class Mapper {
                 lunchOrder.getToDate());
     }
 
-    public LunchOrder toLunchOrder(long id, LunchOrderDto lunchOrderDto, User createdBy) {
+    public LunchOrder toLunchOrder(long id, LunchOrderDto lunchOrderDto, Customer createdBy) {
         return new LunchOrder(id, lunchOrderDto.getMonday(), lunchOrderDto.getTuesday(), lunchOrderDto.getWednesday(), lunchOrderDto.getThursday(), lunchOrderDto.getFriday(), createdBy);
     }
 
-    public UserDto toUserDto(User user) {
-        return new UserDto(user.getFirstName(), user.getSecondName());
+    public CustomerDto toCustomerDto(Customer customer) {
+        return new CustomerDto(customer.getFirstName(), customer.getSecondName());
     }
-
-    public UserLoginDto toUserLoginDto(User user) {
-        return new UserLoginDto(user.getEmail(), user.getPassword(), user.getRole());
-    }
-
 }

@@ -1,10 +1,10 @@
 package cz.comkop.lunchordersystem;
 
+import cz.comkop.lunchordersystem.model.Customer;
 import cz.comkop.lunchordersystem.model.LunchOrder;
 import cz.comkop.lunchordersystem.model.RoleType;
-import cz.comkop.lunchordersystem.model.User;
 import cz.comkop.lunchordersystem.repository.LunchOrderRepository;
-import cz.comkop.lunchordersystem.repository.UserRepository;
+import cz.comkop.lunchordersystem.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -20,19 +20,19 @@ public class DevelopmentConfig {
     private final PasswordEncoder encoder;
 
     @Bean
-    CommandLineRunner commandLineRunner(LunchOrderRepository lunchOrderRepository, UserRepository userRepository) {
+    CommandLineRunner commandLineRunner(LunchOrderRepository lunchOrderRepository, CustomerRepository customerRepository) {
         return args -> {
 
-            List<User> users = List.of(
-                    new User(1, "Tomáš", "Kopuletý", "tomcakopulety@seznam.cz", encoder.encode("Nik"), RoleType.ROLE_ADMIN),
-                    new User(2, "Filip", "Boleloucký", "Superfilip@email.cz", encoder.encode("Superfilip22"), RoleType.ROLE_USER)
+            List<Customer> customers = List.of(
+                    new Customer(1, "admin", "admin", "admin@seznam.cz", encoder.encode("admin"), RoleType.ROLE_ADMIN),
+                    new Customer(2, "user", "user", "user@seznam.cz", encoder.encode("user"), RoleType.ROLE_USER)
                     );
             List<LunchOrder> orders = List.of(
-                    new LunchOrder(1, 0, 1, 3, 0, 5, users.get(0)),
-                    new LunchOrder(3, 2, 0, 6, 2, 2, users.get(0)),
-                    new LunchOrder(4, 5, 2, 0, 0, 1, users.get(1)),
-                    new LunchOrder(5, 3, 3, 1, 4, 5, users.get(1)));
-            userRepository.saveAll(users);
+                    new LunchOrder(1, 0, 1, 3, 0, 5, customers.get(0)),
+                    new LunchOrder(3, 2, 0, 6, 2, 2, customers.get(0)),
+                    new LunchOrder(4, 5, 2, 0, 0, 1, customers.get(1)),
+                    new LunchOrder(5, 3, 3, 1, 4, 5, customers.get(1)));
+            customerRepository.saveAll(customers);
             lunchOrderRepository.saveAll(orders);
         };
     }
