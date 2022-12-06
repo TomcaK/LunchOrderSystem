@@ -24,6 +24,10 @@ public class Mapper {
         return new LunchOrder(id, lunchOrderDto.getMonday(), lunchOrderDto.getTuesday(), lunchOrderDto.getWednesday(), lunchOrderDto.getThursday(), lunchOrderDto.getFriday(), createdBy);
     }
 
+    public LunchOrder toLunchOrder(long id, LunchOrderDto lunchOrderDto) {
+        return new LunchOrder(id, lunchOrderDto.getMonday(), lunchOrderDto.getTuesday(), lunchOrderDto.getWednesday(), lunchOrderDto.getThursday(), lunchOrderDto.getFriday());
+    }
+
     public CustomerDto toCustomerDto(Customer customer) {
         return new CustomerDto(customer.getFirstName(), customer.getSecondName());
     }

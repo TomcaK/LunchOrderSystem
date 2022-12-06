@@ -32,7 +32,7 @@ public class LunchOrder {
     private int thursday;
     private int friday;
     @ManyToOne
-    @JoinColumn(name = "created_by",nullable = false)
+    @JoinColumn(name = "created_by", nullable = false)
     private Customer createdBy;
     @ManyToOne
     @JoinColumn(name = "updated_by")
@@ -49,5 +49,14 @@ public class LunchOrder {
         this.createdBy = createdBy;
         this.fromDate = WeekUtil.getStartOfWeek();
         this.toDate = WeekUtil.getEndOfWeek(fromDate);
+    }
+
+    public LunchOrder(long id, int monday, int tuesday, int wednesday, int thursday, int friday) {
+        this.id = id;
+        this.monday = monday;
+        this.tuesday = tuesday;
+        this.wednesday = wednesday;
+        this.thursday = thursday;
+        this.friday = friday;
     }
 }

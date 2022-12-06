@@ -23,19 +23,26 @@ public class CustomerService {
 
 
     public List<LunchOrderDto> getUserLunchOrders() {
-        return lunchOrderRepository.findAllCustomerOrders(getUserId()).stream()
+        return lunchOrderRepository.findAllCustomerOrders(getCustomerId()).stream()
                 .map(mapper::toLunchOrderDto)
                 .collect(Collectors.toList());
     }
 
     public void newLunchOrder(LunchOrderDto lunchOrderDto) {
         long orderId = IdUtil.getFreeId(lunchOrderRepository.getIds());
-        Optional<Customer> user = customerRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-        LunchOrder order = mapper.toLunchOrder(orderId, lunchOrderDto, user.get());
+       Customer customer = customerRepository.getReferenceById(getCustomerId());
+        LunchOrder order = mapper.toLunchOrder(orderId, lunchOrderDto, customer);
         lunchOrderRepository.save(order);
     }
 
-    private long getUserId() {
+    public void updateLunchOrder(LunchOrderDto lunchOrderDto, long orderId) {
+        Customer customer = customerRepository.getReferenceById(getCustomerId());
+        LunchOrder order = mapper.toLunchOrder(orderId, lunchOrderDto);
+        order.setUpdateBy(customer);
+        lunchOrderRepository.save(order);
+    }
+
+    private long getCustomerId() {
         return Long.parseLong(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 }

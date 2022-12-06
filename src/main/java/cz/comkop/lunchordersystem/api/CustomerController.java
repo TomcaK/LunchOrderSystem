@@ -19,6 +19,11 @@ public class CustomerController {
         customerService.newLunchOrder(lunchOrderDto);
     }
 
+    @PostMapping(path = "/updateOrder")
+    public void updateLunchOrder(@RequestBody LunchOrderDto lunchOrderDto, long orderId) {
+        customerService.updateLunchOrder(lunchOrderDto,orderId);
+    }
+
     @GetMapping(value = "/orders")
     public List<LunchOrderDto> getUserLunchOrders() {
         return customerService.getUserLunchOrders();
