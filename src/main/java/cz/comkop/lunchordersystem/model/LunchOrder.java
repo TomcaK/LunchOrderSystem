@@ -31,11 +31,12 @@ public class LunchOrder {
     private int wednesday;
     private int thursday;
     private int friday;
+
     @ManyToOne
-    @JoinColumn(name = "created_by", nullable = false)
+    @JoinColumn(name = "created_by_id")
     private Customer createdBy;
     @ManyToOne
-    @JoinColumn(name = "updated_by")
+    @JoinColumn(name = "updated_by_id")
     private Customer updateBy;
 
 

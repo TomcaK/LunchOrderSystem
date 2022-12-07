@@ -3,6 +3,7 @@ package cz.comkop.lunchordersystem.api;
 import cz.comkop.lunchordersystem.dto.LunchOrderDto;
 import cz.comkop.lunchordersystem.service.CustomerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,5 +28,11 @@ public class CustomerController {
     @GetMapping(value = "/orders")
     public List<LunchOrderDto> getUserLunchOrders() {
         return customerService.getUserLunchOrders();
+    }
+
+    @GetMapping(value = "/test")
+    public String getTest(Model model) {
+        model.addAttribute("something","this is test");
+        return "test";
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface LunchOrderRepository extends JpaRepository<LunchOrder, Long> {
     @Query("SELECT o.id FROM LunchOrder o")
-    List<Long> getIds();
+    List<Long> findAllIds();
 
     @Query("SELECT o FROM LunchOrder o,Customer c WHERE c.id = ?1 AND o.createdBy = c.id")
     List<LunchOrder> findAllCustomerOrders(Long id);

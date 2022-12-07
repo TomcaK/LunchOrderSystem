@@ -27,10 +27,10 @@ public class AdminService {
     }
 
     public List<Long> getAllIds() {
-        return lunchOrderRepository.getIds();
+        return lunchOrderRepository.findAllIds();
     }
 
     public Long getFreeId() {
-        return IdUtil.getFreeId(lunchOrderRepository.getIds());
+        return IdUtil.getFreeId(lunchOrderRepository.findAllIds());
     }
 }

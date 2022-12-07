@@ -1,4 +1,4 @@
-package cz.comkop.lunchordersystem;
+package cz.comkop.lunchordersystem.config;
 
 import cz.comkop.lunchordersystem.model.Customer;
 import cz.comkop.lunchordersystem.model.LunchOrder;
