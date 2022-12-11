@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Registrace | Lunch app</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"  href="style.css" th:href="@{/css/style.css}" />
 </head><meta charset="UTF-8">
 <body>
-<div class="signup">
+<div class="register">
   <h1>Registrace</h1>
   <h4>Zadejte e-mail, jméno, příjmení a heslo:</h4>
-  <form action="register" method="post" />
-  <form>
+  <form action="/register" method="post" >
     <label>E-mail</label>
     <input type="email" name="email" />
     <label>Jméno</label>

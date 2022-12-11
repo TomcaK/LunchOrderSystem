@@ -4,11 +4,12 @@ import cz.comkop.lunchordersystem.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
@@ -23,9 +24,8 @@ public class AuthenticationController {
     }
 
     @PostMapping(path = "/login")
-    public String login(String email, String password) {
-        authenticationService.login(email, password);
-        return "/";
+    public void login(String email, String password) {
+        ResponseEntity<HttpStatus> login = authenticationService.login(email, password);
     }
 
     //message when something is wrong

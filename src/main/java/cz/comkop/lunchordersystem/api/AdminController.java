@@ -34,8 +34,4 @@ public class AdminController {
     public List<Long> getAllIds() {
         return adminService.getAllIds();
     }
-    @GetMapping(path = "/freeId")
-    public Long getNextFreeId(){
-        return adminService.getFreeId();
-    }
 }

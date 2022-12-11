@@ -24,14 +24,14 @@ public class DevelopmentConfig {
         return args -> {
 
             List<Customer> customers = List.of(
-                    new Customer(1, "admin", "admin", "admin@seznam.cz", encoder.encode("admin"), RoleType.ROLE_ADMIN),
-                    new Customer(2, "user", "user", "user@seznam.cz", encoder.encode("user"), RoleType.ROLE_USER)
+                    new Customer( "admin", "admin", "admin@seznam.cz", encoder.encode("admin"), RoleType.ROLE_ADMIN),
+                    new Customer("user", "user", "user@seznam.cz", encoder.encode("user"), RoleType.ROLE_USER)
                     );
             List<LunchOrder> orders = List.of(
-                    new LunchOrder(1, 0, 1, 3, 0, 5, customers.get(0)),
-                    new LunchOrder(3, 2, 0, 6, 2, 2, customers.get(0)),
-                    new LunchOrder(4, 5, 2, 0, 0, 1, customers.get(1)),
-                    new LunchOrder(5, 3, 3, 1, 4, 5, customers.get(1)));
+                    new LunchOrder( 0, 1, 3, 0, 5, customers.get(0)),
+                    new LunchOrder( 2, 0, 6, 2, 2, customers.get(0)),
+                    new LunchOrder(5, 2, 0, 0, 1, customers.get(1)),
+                    new LunchOrder(3, 3, 1, 4, 5, customers.get(1)));
             customerRepository.saveAll(customers);
             lunchOrderRepository.saveAll(orders);
         };

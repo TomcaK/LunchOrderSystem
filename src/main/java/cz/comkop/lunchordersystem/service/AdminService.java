@@ -4,7 +4,6 @@ import cz.comkop.lunchordersystem.dto.LunchOrderDto;
 import cz.comkop.lunchordersystem.dto.CustomerDto;
 import cz.comkop.lunchordersystem.repository.LunchOrderRepository;
 import cz.comkop.lunchordersystem.repository.CustomerRepository;
-import cz.comkop.lunchordersystem.util.IdUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +29,4 @@ public class AdminService {
         return lunchOrderRepository.findAllIds();
     }
 
-    public Long getFreeId() {
-        return IdUtil.getFreeId(lunchOrderRepository.findAllIds());
-    }
 }

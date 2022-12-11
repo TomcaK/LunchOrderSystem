@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 
 public class LunchOrder {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private LocalDate fromDate;
     private LocalDate toDate;
@@ -40,8 +41,7 @@ public class LunchOrder {
     private Customer updateBy;
 
 
-    public LunchOrder(long id, int monday, int tuesday, int wednesday, int thursday, int friday, Customer createdBy) {
-        this.id = id;
+    public LunchOrder( int monday, int tuesday, int wednesday, int thursday, int friday, Customer createdBy) {
         this.monday = monday;
         this.tuesday = tuesday;
         this.wednesday = wednesday;
@@ -52,7 +52,7 @@ public class LunchOrder {
         this.toDate = WeekUtil.getEndOfWeek(fromDate);
     }
 
-    public LunchOrder(long id, int monday, int tuesday, int wednesday, int thursday, int friday) {
+    public LunchOrder(long id,int monday, int tuesday, int wednesday, int thursday, int friday) {
         this.id = id;
         this.monday = monday;
         this.tuesday = tuesday;

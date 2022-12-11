@@ -21,9 +21,9 @@ public class SecurityConfig {
         return http.csrf().disable().headers().frameOptions().disable().and()
                 .authorizeRequests()
                 .antMatchers("/", "/register", "/login", "h2-console/**").permitAll()
-                .antMatchers("/api/user/**").hasAnyRole("USER","ADMIN")
+                .antMatchers("/api/auth/**","/api/user/**").hasAnyRole("USER","ADMIN")
                 .antMatchers("/api/admin/**").hasRole("ADMIN")
-                .and().formLogin().loginProcessingUrl("/login.html").defaultSuccessUrl("/")
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/test").usernameParameter("email").passwordParameter("password")
                 .and()
                 .httpBasic(Customizer.withDefaults())
                 .build();

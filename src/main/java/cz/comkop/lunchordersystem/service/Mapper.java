@@ -20,12 +20,12 @@ public class Mapper {
                 lunchOrder.getToDate());
     }
 
-    public LunchOrder toLunchOrder(long id, LunchOrderDto lunchOrderDto, Customer createdBy) {
-        return new LunchOrder(id, lunchOrderDto.getMonday(), lunchOrderDto.getTuesday(), lunchOrderDto.getWednesday(), lunchOrderDto.getThursday(), lunchOrderDto.getFriday(), createdBy);
+    public LunchOrder toLunchOrder(LunchOrderDto lunchOrderDto, Customer createdBy) {
+        return new LunchOrder(lunchOrderDto.getMonday(), lunchOrderDto.getTuesday(), lunchOrderDto.getWednesday(), lunchOrderDto.getThursday(), lunchOrderDto.getFriday(), createdBy);
     }
 
-    public LunchOrder toLunchOrder(long id, LunchOrderDto lunchOrderDto) {
-        return new LunchOrder(id, lunchOrderDto.getMonday(), lunchOrderDto.getTuesday(), lunchOrderDto.getWednesday(), lunchOrderDto.getThursday(), lunchOrderDto.getFriday());
+    public LunchOrder toLunchOrder(long orderId, LunchOrderDto lunchOrderDto) {
+        return new LunchOrder(orderId,lunchOrderDto.getMonday(), lunchOrderDto.getTuesday(), lunchOrderDto.getWednesday(), lunchOrderDto.getThursday(), lunchOrderDto.getFriday());
     }
 
     public CustomerDto toCustomerDto(Customer customer) {

@@ -1,4 +1,4 @@
-package cz.comkop.lunchordersystem.api;
+package cz.comkop.lunchordersystem.web;
 
 import cz.comkop.lunchordersystem.repository.CustomerRepository;
 import cz.comkop.lunchordersystem.service.AuthenticationService;
@@ -16,5 +16,20 @@ public class HTMLController {
     @GetMapping(value = "/")
     public String getIndex() {
         return authenticationService.checkAuthentication() ? "test" : "login";
+    }
+
+    @GetMapping(value = "/register")
+    public String getRegister() {
+        return "register";
+    }
+
+    @GetMapping(value = "/login")
+    public String getLogin() {
+        return "login";
+    }
+
+    @GetMapping(value = "/test")
+    public String getTest() {
+        return "test";
     }
 }

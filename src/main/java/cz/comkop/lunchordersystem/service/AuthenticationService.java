@@ -3,7 +3,6 @@ package cz.comkop.lunchordersystem.service;
 import cz.comkop.lunchordersystem.model.Customer;
 import cz.comkop.lunchordersystem.model.RoleType;
 import cz.comkop.lunchordersystem.repository.CustomerRepository;
-import cz.comkop.lunchordersystem.util.IdUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,8 +43,7 @@ public class AuthenticationService {
 
 
     public boolean register(String firstName, String secondName, String email, String password, String passwordControl) {
-        long id = IdUtil.getFreeId(customerRepository.findAllIds());
-        customerRepository.save(new Customer(id, firstName, secondName, email, encoder.encode(password), RoleType.ROLE_USER));
+        customerRepository.save(new Customer(firstName, secondName, email, encoder.encode(password), RoleType.ROLE_USER));
         return true;
     }
 

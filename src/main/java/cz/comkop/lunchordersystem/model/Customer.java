@@ -23,8 +23,7 @@ public class Customer {
     @OneToMany(mappedBy = "createdBy")
     private List<LunchOrder> lunchOrders;
 
-    public Customer(long id, String firstName, String secondName, String email, String password, RoleType role) {
-        this.id = id;
+    public Customer( String firstName, String secondName, String email, String password, RoleType role) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.email = email;
