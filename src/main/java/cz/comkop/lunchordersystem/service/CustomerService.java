@@ -21,11 +21,12 @@ public class CustomerService {
     private final Mapper mapper;
 
 
-        public List<LunchOrderDto> getUserLunchOrders() {
-            return lunchOrderRepository.findAllCustomerOrders(getCustomerId()).stream()
-                    .map(mapper::toLunchOrderDto)
-                    .collect(Collectors.toList());
-        }
+    public List<LunchOrderDto> getUserLunchOrders() {
+        return lunchOrderRepository.findAllCustomerOrders(getCustomerId()).stream()
+                .map(mapper::toLunchOrderDto)
+                .collect(Collectors.toList());
+        //JWT token
+    }
 
 
     public void newLunchOrder(LunchOrderDto lunchOrderDto) {

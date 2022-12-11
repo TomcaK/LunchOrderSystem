@@ -29,10 +29,4 @@ public class CustomerController {
     public List<LunchOrderDto> getUserLunchOrders() {
         return customerService.getUserLunchOrders();
     }
-
-    @GetMapping(value = "/test")
-    public String getTest(Model model) {
-        model.addAttribute("something","this is test");
-        return "test";
-    }
 }

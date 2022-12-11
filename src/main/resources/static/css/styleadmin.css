@@ -1,0 +1,129 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: #344a72;
+  overflow: hidden;
+  font-family: system-ui;
+}
+​
+.sidenav-bar span {
+  color: #f7403b;
+}
+.sidenav-bar {
+  text-align: center;
+  width: 100%;
+  background-color: #272c4a;
+  overflow: hidden;
+  transition: 0.5s;
+}
+.sidenav-bar a {
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 15px 25px 10px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #49c1a2;
+  transition: 0.3s;
+}
+.sidenav-bar a:hover {
+  color: white;
+}
+.upload-file {
+  text-align: center;
+  background-color: #272c4a;
+  font-size: 15px;
+  margin-left: 300px;
+  color: #49c1a2;
+  margin-top: 350px;
+  position: fixed;
+  padding: 10px 15px 20px;
+  border: 5px solid #49c1a2;
+  width: 13%;
+}
+.upload-icon {
+  width: 50px;
+}
+.container {
+  text-align: center;
+  background-color: #272c4a;
+  font-weight: bold;
+  margin-left: 300px;
+  margin-top: 150px;
+  width: 14%;
+  border: 5px solid #49c1a2;
+  padding: 5px;
+}
+.custom-select option {
+  color: red;
+}
+/*the container must be positioned relative:*/
+.custom-select {
+  margin-left: 60px;
+  width: 150px;
+  border: 5px solid #344a72;
+  position: relative;
+  font-family: Arial;
+}
+​
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+​
+.select-selected {
+  background-color: #49c1a2;
+}
+​
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 1000px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #49c1a2 transparent transparent transparent;
+}
+​
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+​
+/*style the items (options), including the selected item:*/
+.select-items div,
+.select-selected {
+  color: #272c4a;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+h2 {
+  color: #49c1a2;
+}
+h2 span {
+  color: red;
+}
+​
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: #49c1a2;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+​
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+​
+.select-items div:hover,
+.same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}

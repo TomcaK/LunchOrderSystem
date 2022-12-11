@@ -12,6 +12,7 @@ import java.util.List;
 @Table(name = "customers")
 public class Customer {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private RoleType role;
     private String firstName;

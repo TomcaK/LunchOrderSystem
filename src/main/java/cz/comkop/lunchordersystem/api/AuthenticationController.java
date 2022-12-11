@@ -23,8 +23,9 @@ public class AuthenticationController {
     }
 
     @PostMapping(path = "/login")
-    public ResponseEntity<HttpStatus> login(String email, String password) {
-        return authenticationService.login(email, password);
+    public String login(String email, String password) {
+        authenticationService.login(email, password);
+        return "/";
     }
 
     //message when something is wrong

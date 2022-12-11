@@ -23,7 +23,7 @@ public class SecurityConfig {
                 .antMatchers("/", "/register", "/login", "h2-console/**").permitAll()
                 .antMatchers("/api/user/**").hasAnyRole("USER","ADMIN")
                 .antMatchers("/api/admin/**").hasRole("ADMIN")
-                .and().formLogin()
+                .and().formLogin().loginProcessingUrl("/login.html").defaultSuccessUrl("/")
                 .and()
                 .httpBasic(Customizer.withDefaults())
                 .build();
