@@ -25,10 +25,10 @@ public class Mapper {
     }
 
     public LunchOrder toLunchOrder(long orderId, LunchOrderDto lunchOrderDto) {
-        return new LunchOrder(orderId,lunchOrderDto.getMonday(), lunchOrderDto.getTuesday(), lunchOrderDto.getWednesday(), lunchOrderDto.getThursday(), lunchOrderDto.getFriday());
+        return new LunchOrder(orderId, lunchOrderDto.getMonday(), lunchOrderDto.getTuesday(), lunchOrderDto.getWednesday(), lunchOrderDto.getThursday(), lunchOrderDto.getFriday());
     }
 
     public CustomerDto toCustomerDto(Customer customer) {
-        return new CustomerDto(customer.getFirstName(), customer.getSecondName());
+        return new CustomerDto(customer.getSecondName() + " " + customer.getFirstName(),customer.getId());
     }
 }

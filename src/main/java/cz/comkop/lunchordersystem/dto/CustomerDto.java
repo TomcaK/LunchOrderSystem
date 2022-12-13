@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 public class CustomerDto {
-    private String firstName;
-    private String secondName;
+    private String name;
+    private long id;
 }

@@ -7,6 +7,8 @@ import cz.comkop.lunchordersystem.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,8 +19,8 @@ public class AdminService {
     private final LunchOrderRepository lunchOrderRepository;
     private final Mapper mapper;
 
-    public List<CustomerDto> getUsersDto() {
-        return customerRepository.findAll().stream().map(mapper::toCustomerDto).collect(Collectors.toList());
+    public List<CustomerDto> getCustomersDto() {
+        return customerRepository.findAll().stream().map(mapper::toCustomerDto).sorted(Comparator.comparing(CustomerDto::getName)).collect(Collectors.toList());
     }
 
     public List<LunchOrderDto> getLunchOrdersDto() {

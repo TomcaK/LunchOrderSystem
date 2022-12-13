@@ -17,13 +17,13 @@ public class Customer {
     private RoleType role;
     private String firstName;
     private String secondName;
-
+    @Column(unique = true)
     private String email;
     private String password;
     @OneToMany(mappedBy = "createdBy")
     private List<LunchOrder> lunchOrders;
 
-    public Customer( String firstName, String secondName, String email, String password, RoleType role) {
+    public Customer(String firstName, String secondName, String email, String password, RoleType role) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.email = email;

@@ -43,7 +43,7 @@ public class AuthenticationService {
 
 
     public boolean register(String firstName, String secondName, String email, String password, String passwordControl) {
-        customerRepository.save(new Customer(firstName, secondName, email, encoder.encode(password), RoleType.ROLE_USER));
+        customerRepository.save(new Customer(firstName, secondName, email, encoder.encode(password), RoleType.ROLE_CUSTOMER));
         return true;
     }
 
@@ -57,5 +57,9 @@ public class AuthenticationService {
     public boolean checkAuthentication(){
         Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
         return !authorities.contains(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
+    }
+
+    public Collection<? extends GrantedAuthority> getAuthentication(){
+        return  SecurityContextHolder.getContext().getAuthentication().getAuthorities();
     }
 }

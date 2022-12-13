@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="cs"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Obědy | Lunch app</title>
+</head><meta charset="UTF-8">
+<body>
+<div class="test">
+    <label th:text="${something}">
+    </label>
+</div>
+
+<div class="customer">
+    <h1>Uživatel</h1>
+        <select>
+            <option th:each="customer : ${customers}"
+                    th:value="${customer.id}"
+                    th:text="${customer.name}">
+            </option>
+        </select>
+</div>
+<div class="date">
+    <h1>Datum</h1>
+    <select>
+        <option value="0">0</option>
+        <option value="1">0</option>
+    </select>
+</div>
+<div class="lunchOrder">
+    <h1>Objednání obědů</h1>
+    <form action="createOrder" method="post">
+        <label>Pondělí</label>
+        <input type="text" name="monday" />
+        <label>Úterý</label>
+        <input type="text" name="tuesday" />
+        <label>Středa</label>
+        <input type="text" name="wednesday" />
+        <label>Čtvrtek</label>
+        <input type="text" name="thursday" />
+        <label>Pátek</label>
+        <input type="text" name="friday" />
+        <button type="submit">Uložit</button>
+    </form>
+</div>
+</body>
+</html>

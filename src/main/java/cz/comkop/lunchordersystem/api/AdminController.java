@@ -22,7 +22,7 @@ public class AdminController {
 
     @GetMapping(path = "/allUsers")
     public ResponseEntity<List<CustomerDto>> getAllCustomersDto() {
-        return ResponseEntity.ok().body(adminService.getUsersDto());
+        return ResponseEntity.ok().body(adminService.getCustomersDto());
     }
 
     @GetMapping(path = "/allOrders")
