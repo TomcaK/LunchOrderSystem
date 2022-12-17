@@ -17,7 +17,7 @@ public class HTMLController {
 
     @GetMapping(value = "/")
     public String getIndex() {
-        return authenticationService.checkAuthentication() ? "loadpage" : "login";
+        return authenticationService.checkAuthentication() ? "menu" : "login";
     }
 
     @GetMapping(value = "/register")

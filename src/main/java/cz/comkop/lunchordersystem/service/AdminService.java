@@ -1,13 +1,12 @@
 package cz.comkop.lunchordersystem.service;
 
-import cz.comkop.lunchordersystem.dto.LunchOrderDto;
 import cz.comkop.lunchordersystem.dto.CustomerDto;
-import cz.comkop.lunchordersystem.repository.LunchOrderRepository;
+import cz.comkop.lunchordersystem.dto.LunchOrderDto;
 import cz.comkop.lunchordersystem.repository.CustomerRepository;
+import cz.comkop.lunchordersystem.repository.LunchOrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;

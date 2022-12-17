@@ -16,11 +16,10 @@ import java.util.List;
 @RequestMapping("/api/admin")
 @RequiredArgsConstructor
 public class AdminController {
-    private final CustomerService customerService;
     private final AdminService adminService;
 
 
-    @GetMapping(path = "/allUsers")
+    @GetMapping(path = "/allCustomers")
     public ResponseEntity<List<CustomerDto>> getAllCustomersDto() {
         return ResponseEntity.ok().body(adminService.getCustomersDto());
     }
